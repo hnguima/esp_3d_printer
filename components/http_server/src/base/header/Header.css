@@ -1,0 +1,47 @@
+.wrapper {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  z-index: 100;
+
+  top: 0;
+  left: 0;
+  position: absolute;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background-color: var(--background-color);
+  color: var(--accent-color);
+}
+
+.button {
+  width: 28px;
+  cursor: pointer;
+
+  background-color: var(--accent-color);
+
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.button-left,
+.button-right {
+  height: 28px;
+}
+.button-center {
+  height: 48px;
+  width: 100px;
+}

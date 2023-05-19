@@ -1,0 +1,100 @@
+.wrapper {
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-drop-area {
+  background: var(--field-color);
+  position: relative;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+
+  border-radius: 8px;
+
+  z-index: 0;
+
+  height: 90px;
+}
+.file-drop-area:hover {
+  opacity: 70%;
+}
+
+.file-drop-area div {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  position: relative;
+  background-color: var(--accent-color);
+
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+
+.file-drop-area span {
+  font-size: 12px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.data-field {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+.data-field:hover:not(:focus) {
+  opacity: 0;
+}
+
+.data-label {
+  width: 100%;
+  /* padding-left: 30px; */
+}
+
+.button {
+  height: 50px;
+  margin-top: 10px;
+  padding: 15px;
+
+  font-weight: bold;
+
+  outline: none;
+  border-style: none;
+  border-radius: 8px;
+
+  background-color: var(--accent-color);
+  color: var(--background-color);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.hide { 
+  height: 0;
+  padding: 0;
+  margin-top:0;
+  font-size: 0;
+}
+
+.button:hover {
+  opacity: 70%;
+}

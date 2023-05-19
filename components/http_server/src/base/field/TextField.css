@@ -1,0 +1,17 @@
+.wrapper.inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.data-field.inline{
+  width: fit-content;
+  text-align: right;
+}
+
+.read-only{
+  background-color: var(--background-color);
+  cursor: text;
+  pointer-events: none;
+}

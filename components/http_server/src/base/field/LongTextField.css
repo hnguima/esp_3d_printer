@@ -1,0 +1,46 @@
+.wrapper {
+  position: relative;
+}
+
+.data-field {
+  width: 100%;
+  height: fit-content;
+
+  padding-block: 10px;
+  min-height: 25px;
+
+  margin-top: 10px;
+  resize: none;
+
+  overflow-y: hidden;
+}
+
+.data-field.inactive,
+.data-field:hover.inactive  {
+  opacity: 100%;
+  background-color: #0000;
+  color: #000;
+}
+
+.edit-btn {
+  position: absolute;
+
+  width: 22px;
+  height: 22px;
+  right: 5px;
+  top: 15px;
+
+  cursor: pointer;
+
+  background-color: var(--accent-color);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: cover;
+  -webkit-mask-size: cover;
+}
+
+/* .password-eye:hover {
+  opacity: 50%;
+} */

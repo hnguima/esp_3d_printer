@@ -1,0 +1,8 @@
+.ip-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.data-field {
+  text-align: center;
+}

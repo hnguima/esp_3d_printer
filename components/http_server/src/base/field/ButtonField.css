@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.data-label {
+  width: 100%;
+  /* padding-left: 30px; */
+}
+
+.button {
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+
+  font-weight: bold;
+
+  flex-shrink: 0;
+
+  outline: none;
+  border-style: none;
+  border-radius: 8px;
+
+  background-color: var(--accent-color);
+  color: var(--background-color);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.button > div {
+  height: 30px;
+  width: 30px;
+
+  top: 0;
+  left: 0;
+
+  background-color: var(--background-color);
+
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}

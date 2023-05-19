@@ -1,0 +1,65 @@
+{
+  "name": "http_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "create-index": "^2.6.0",
+    "crypto": "^1.0.1",
+    "esp": "^0.1.16",
+    "js-sha256": "^0.9.0",
+    "merge-dirs": "^0.1.0",
+    "mini-css-extract-plugin": "^2.7.2",
+    "npm": "^9.5.1",
+    "protobufjs": "^7.2.2",
+    "protobufjs-cli": "^1.1.1",
+    "rollup-plugin-import-css": "^3.1.0",
+    "run": "^1.4.0",
+    "save-dev": "0.0.1-security",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-merge": "^5.8.0",
+    "webpack-proto-loader": "^0.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.0",
+    "auto-index-file": "^0.1.10",
+    "compression-webpack-plugin": "^10.0.0",
+    "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "http-server": "^14.1.1",
+    "image-minimizer-webpack-plugin": "^3.8.1",
+    "raw-loader": "^4.0.2",
+    "style-loader": "^3.3.1",
+    "style-shadow-dom-loader": "^3.3.1",
+    "svg-url-loader": "^8.0.0",
+    "svgo": "^3.0.2",
+    "terser-webpack-plugin": "^5.3.6"
+  },
+  "scripts": {
+    "preesp": "node ./scripts/collect_files.mjs",
+    "esp": "webpack --config ./webpack.prod.js",
+    "postesp": "node ./scripts/move_to_build.mjs",
+    "preespdev": "node ./scripts/collect_files.mjs",
+    "espdev": "webpack --config ./webpack.dev.js",
+    "dev": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atiautomacao/http_server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/atiautomacao/http_server/issues"
+  },
+  "homepage": "https://github.com/atiautomacao/http_server#readme",
+  "description": ""
+}

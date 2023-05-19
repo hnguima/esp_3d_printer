@@ -1,0 +1,26 @@
+{
+  "test1": {
+    "enabled": true,
+
+    "test": "",
+    "test1": false,
+    "test2": false
+  },
+  "test2": {
+    "enabled": false,
+    "text": "",
+    "switch": true
+  },
+  "ethernet": {
+    "enabled": true,
+    "texttest": "testes",
+    "switch": true,
+    "password": "asdfasdf"
+  },
+  "main": {
+    "enabled": true,
+    "texttest": "texto de teste",
+    "switch": true,
+    "password": "asdfasdf"
+  }
+}

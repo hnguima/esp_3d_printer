@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+html,
+input,
+select,
+textarea,
+span,
+div {
+  font-family: "Poppins";
+  font-size: 16px;
+}
+
+span {
+  font-size: 13px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 50px;
+
+  padding-inline: 10px;
+  box-sizing: border-box;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 14px;
+}
+
+/* .wrapper > h3 {
+} */
+
+.wrapper > div {
+  height: 25px;
+  width: 25px;
+
+  background-color: var(--accent-color);
+
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: 25px;
+  -webkit-mask-size: 25px;
+}
+
+.wrapper.active {
+  background-color: var(--accent-color);
+}
+
+.wrapper.active > h3 {
+  color: white;
+}
+.wrapper:hover:not(.active) > div,
+.wrapper.active > div {
+  background-color: white;
+}
+
+.wrapper:hover:not(.active) {
+  background-color: var(--field-focus-color);
+}
+
+.wrapper:hover:not(.active) {
+  background-color: var(--field-focus-color);
+  color: white;
+}

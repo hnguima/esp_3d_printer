@@ -1,0 +1,153 @@
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 10px 10px rgba(255, 255, 255, 0.4);
+  opacity: 10%;
+  border-radius: 5px;
+  border: solid 2px transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 10px 10px rgba(255, 255, 255, 0.6);
+}
+
+button {
+  font-family: "Poppins";
+}
+
+.main-div {
+  position: absolute;
+  top: 50px;
+  right: 0;
+
+  background-color: var(--page-background-color);
+  height: calc(100% - 50px);
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.container-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-items: right;
+
+  overflow: hidden;
+}
+
+.container.hidden {
+  display: none;
+}
+
+.container {
+  position: relative;
+  padding-block: 10px;
+  padding-inline: 10px;
+
+  flex-shrink: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: right;
+  gap: 10px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.save-container {
+  position: fixed;
+
+  left: 15px;
+  bottom: 15px;
+
+  width: 170px;
+  height: 50px;
+
+  z-index: 10;
+
+  display: flex;
+  justify-content: space-between;
+
+  transition: 0.4s;
+
+  /* background-color: red; */
+}
+
+.save-container.hidden {
+  left: -200px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cancel-button,
+.save-button {
+  height: 50px;
+
+  border-style: none;
+  border-radius: 100px;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  color: white;
+
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.cancel-button:hover,
+.save-button:hover {
+  opacity: 70%;
+}
+
+.cancel-button > div,
+.save-button > div {
+  width: 25px;
+  height: 25px;
+
+  background-color: white;
+  opacity: 80%;
+
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+
+.save-button {
+  width: 115px;
+
+  background-color: rgb(0, 172, 120);
+}
+
+.cancel-button {
+  width: 50px;
+
+  background-color: crimson;
+}

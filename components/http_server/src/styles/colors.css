@@ -1,0 +1,17 @@
+.light-mode {
+  --accept-color: #10dd99cc;
+  --accent-color: #092fac;
+  --page-background-color: var(--accent-color);
+  --field-focus-color: #d2d4df;
+  --field-color: #e1e3ee;
+  --background-color: #faf8f8;
+}
+
+.dark-mode {
+  --accept-color: #10dd99cc;
+  --accent-color: #7ac8ec;
+  --page-background-color: #1a1c29;
+  --field-focus-color: #55576e;
+  --field-color: #383b4e;
+  --background-color: #303142;
+}

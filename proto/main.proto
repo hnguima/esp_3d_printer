@@ -1,0 +1,51 @@
+syntax = "proto2";
+
+import "wifi.proto";
+import "ethernet.proto";
+import "modbus_gateway.proto";
+
+import "nanopb.proto";
+
+message InfoConfig {
+  required string description = 1 [default = "Gateway Modbus", (nanopb).max_size =300];
+}
+
+message LoginConfig {
+  required string username = 1 [default = "admin", (nanopb).max_size = 64];
+  required string password = 2 [default = "ati12345", (nanopb).max_size = 64];
+}
+
+message GeneralInfo {
+  required uint32 resets = 1 [default = 0];
+  required uint32 config_updates = 3 [default = 0];
+
+  required string hw_version = 6 [default = "v1.0.0", (nanopb).max_size = 32];
+
+  required uint32 mac = 7 [default = 0];
+
+  required uint32 install_time = 8 [default = 0];
+  required uint32 boot_time = 9 [default = 0];
+  required uint32 up_time = 10 [default = 0];
+}
+
+message FirmwareInfo {
+  required uint32 fw_updates = 2 [default = 0];
+  required string fw_version = 4 [default = "", (nanopb).max_size = 32];
+  required string fw_timestamp = 5 [default = "", (nanopb).max_size = 34];
+}
+
+message MainConfig {
+  required InfoConfig info = 1;
+
+  required GeneralInfo general = 2;
+  required FirmwareInfo firmware = 3;
+
+  required LoginConfig login = 4;
+
+  required EthernetConfig ethernet = 5;
+
+  required WifiConfig wifi = 6;
+
+  required ModbusGatewayConfig channel_1 = 7;
+  required ModbusGatewayConfig channel_2 = 8;
+}

@@ -1,0 +1,17 @@
+span {
+  font-size: 13px;
+}
+
+.wrapper {
+  position: relative;
+  height: auto;
+  max-height: 70px;
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.wrapper > base-switch {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}

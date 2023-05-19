@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: var(--background-color);
+  width: 200px;
+  height: 100%;
+
+  position: relative;
+
+  top: 0px;
+  left: 0px;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  
+  transition: 0.3s;
+
+  overflow: hidden;
+}
+
+
+.wrapper.closed {
+  left: -200px;
+  width: 0px;
+}
