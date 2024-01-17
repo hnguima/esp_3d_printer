@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/poppins-small.woff2") format("woff2");
+  /* src: url("./fonts/poppins-small.woff") format("woff");
+  src: url("./fonts/poppins-small.ttf") format("truetype"); */
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Poppins";
+}

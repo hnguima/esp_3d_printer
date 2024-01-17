@@ -24,8 +24,8 @@ span {
 
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 
-  color: var(--accent-color);
-  background-color: var(--background-color);
+  color: #092fac;
+  background-color: white;
 }
 
 .title-div {

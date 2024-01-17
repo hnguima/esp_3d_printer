@@ -70,6 +70,7 @@ esp_err_t init_settings_http_handler(Settings<MainConfig> *settings)
       .method = HTTP_GET,
       .handler = get_settings_uri_handler,
       .user_ctx = (void *)settings,
+
   };
 
   httpd_uri_t put_settings_uri = {

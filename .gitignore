@@ -1,3 +1,5 @@
 .vscode
 backup
 build
+components/web_interface/node_modules
+components/web_interface/dist

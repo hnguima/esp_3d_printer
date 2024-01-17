@@ -1,8 +1,12 @@
 FROM espressif/idf
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     software-properties-common \
-    npm
+    npm \
+    python3-pip
+
 RUN npm install npm@latest -g && \
     npm install n -g && \
-    n latest
+    n latest \
+    npm install -g protobufjs protobufjs-cli\
+    pip install protobuf grpcio-tools 

@@ -1,8 +1,6 @@
 syntax = "proto2";
 
 import "wifi.proto";
-import "ethernet.proto";
-import "modbus_gateway.proto";
 
 import "nanopb.proto";
 
@@ -42,10 +40,5 @@ message MainConfig {
 
   required LoginConfig login = 4;
 
-  required EthernetConfig ethernet = 5;
-
   required WifiConfig wifi = 6;
-
-  required ModbusGatewayConfig channel_1 = 7;
-  required ModbusGatewayConfig channel_2 = 8;
 }

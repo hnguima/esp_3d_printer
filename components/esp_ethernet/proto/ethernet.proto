@@ -1,9 +1,0 @@
-syntax = "proto2";
-
-import "nanopb.proto";
-
-message EthernetConfig {
-  required string ip = 1 [default = "192.168.1.10", (nanopb).max_size = 16];
-  required string gw = 2 [default = "192.168.1.254", (nanopb).max_size = 16];
-  required string mask = 3 [default = "255.255.255.0", (nanopb).max_size = 16];
-}
