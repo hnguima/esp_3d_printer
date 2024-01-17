@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include <string>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,22 +11,36 @@
 
 class FileSystem
 {
+protected:
+  static FileSystem *_singleton;
+  FileSystem();
+
 public:
+  std::vector<esp_vfs_spiffs_conf_t> partitions;
 
-  FileSystem(std::string root);
+  esp_err_t mount(const char *base_path);
+  esp_err_t mount_all();
+  esp_err_t unmount(const char *base_path);
+  esp_err_t unmount_all();
 
-  bool create(std::string path);
+  bool find(const char *file_name);
+  int32_t get_size(const char *file_name);
 
-  std::string read(std::string path);
-  std::string read_slice(std::string path, int size);
-  uint8_t read_bytes(std::string path);
+  size_t read(const char *file_name, char *output, size_t size);
+  size_t read(const char *file_name, char *output);
 
-  bool write(std::string path, std::string data);
-  bool write(std::string path, uint8_t data);
-  bool append(std::string path, uint8_t data);
+  size_t write(const char *file_name, char *input, size_t size);
+  size_t write(const char *file_name, char *input);
 
-  bool rename(std::string path, std::string new_path);
-  bool remove(std::string path);
+  esp_err_t open(const char *file_name, const char *mode);
+  esp_err_t close();
+  esp_err_t abort();
+
+  static FileSystem *get_instance();
+
+  FileSystem(FileSystem &other) = delete;
+  void operator=(const FileSystem &) = delete;
 
 private:
+  FILE *file;
 };

@@ -474,12 +474,12 @@ void Printer::command_consumer()
     {
       command.wait = false;
       // _singleton->hotbed_pid.setpoint = 80;
-      _singleton->hotbed_pid.setpoint = command.hotbed_temp;
+      // _singleton->hotbed_pid.setpoint = command.hotbed_temp;
     }
     if (command.has_hotend_temp)
     {
-      // command.wait = false;
-      _singleton->hotend_pid.setpoint = command.hotend_temp;
+      command.wait = false;
+      // _singleton->hotend_pid.setpoint = command.hotend_temp;
       // _singleton->hotend_pid.setpoint = 240;
     }
 
@@ -547,6 +547,9 @@ void Printer::printer_task()
 
 void Printer::print(std::string const &filename)
 {
+
+  ESP_LOGI(TAG, "chegou");
+
   if (_singleton->print_status == PRINT_STATUS_PRINTING)
   {
     ESP_LOGE(TAG, "Printer is busy printing %s", _singleton->filename.c_str());

@@ -42,28 +42,35 @@ extern "C" void app_main()
   FileSystem *file_system = FileSystem::get_instance();
   file_system->mount_all();
 
-  auto *main_settings = new Settings<MainConfig>("/data/main.set");
-  init_app_info_updater(main_settings);
+  // auto *main_settings = new Settings<MainConfig>("/data/main.set");
+  // init_app_info_updater(main_settings);
 
-  WifiDriver *wifi_driver = WifiDriver::get_instance();
-  wifi_driver->init_STA("CLARO_2GA8652A", "38A8652A");
+  // WifiDriver *wifi_driver = WifiDriver::get_instance();
+  // wifi_driver->init_STA("CLARO_2GA8652A", "38A8652A");
 
-  HTTPServer::init();
-  HTTPServer *server = HTTPServer::get_instance();
-  server->add_user(main_settings->obj->login.username,
-                   main_settings->obj->login.password);
+  // HTTPServer::init();
+  // HTTPServer *server = HTTPServer::get_instance();
+  // server->add_user(main_settings->obj->login.username,
+  //                  main_settings->obj->login.password);
 
-  init_settings_http_handler(main_settings);
+  // init_settings_http_handler(main_settings);
 
   // FirmwareUpdate fw_update;
 
+
+
   sdcard_init();
+
+  Printer::init();
+  // Printer::get_instance()->move_z_in_time(100, 2);
+
   Printer::print("/sdcard/collar_8mm.gcode");
+
 
   while (true)
   {
     // ESP_LOGI("mem", "%lu", esp_get_free_heap_size());
-    // Printer::print_temperatures();
+    Printer::print_temperatures();
     vTaskDelay(5000 / portTICK_PERIOD_MS);
   }
 }
