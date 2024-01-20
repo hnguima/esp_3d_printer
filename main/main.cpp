@@ -64,7 +64,7 @@ extern "C" void app_main()
   Printer::init();
   // Printer::get_instance()->move_z_in_time(100, 2);
 
-  Printer::print("/sdcard/collar_8mm.gcode");
+  Printer::print("/sdcard/TacoLixa430.gcode");
 
 
   while (true)

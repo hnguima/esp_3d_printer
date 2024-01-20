@@ -159,7 +159,7 @@ gcode_cmd_t gcode_run_g92(const char *params)
 
   return cmd;
 }
-gcode_cmd_t gcode_intrepret_line(const char *line)
+gcode_cmd_t gcode_interpret_line(const char *line)
 {
 
   gcode_cmd_t cmd = GCODE_CMD_ZERO();

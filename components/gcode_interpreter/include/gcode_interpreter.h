@@ -77,7 +77,7 @@ typedef struct
 
 } gcode_cmd_t;
 
-gcode_cmd_t gcode_intrepret_line(const char *line);
+gcode_cmd_t gcode_interpret_line(const char *line);
 int file_get_line(FILE *fp, char *line);
 
 #ifdef __cplusplus

@@ -473,13 +473,13 @@ void Printer::command_consumer()
     if (command.has_hotbed_temp)
     {
       command.wait = false;
-      // _singleton->hotbed_pid.setpoint = 80;
-      // _singleton->hotbed_pid.setpoint = command.hotbed_temp;
+      //_singleton->hotbed_pid.setpoint = 80;
+      _singleton->hotbed_pid.setpoint = command.hotbed_temp;
     }
     if (command.has_hotend_temp)
     {
-      command.wait = false;
-      // _singleton->hotend_pid.setpoint = command.hotend_temp;
+      // command.wait = false;
+      _singleton->hotend_pid.setpoint = command.hotend_temp;
       // _singleton->hotend_pid.setpoint = 240;
     }
 
@@ -531,7 +531,7 @@ void Printer::printer_task()
       }
 
       // printf("%d, %s", _singleton->command_queue.size(), line);
-      command = gcode_intrepret_line(line);
+      command = gcode_interpret_line(line);
 
       std::unique_lock command_queue_lock(_singleton->command_queue_mutex);
       _singleton->space_available.wait(command_queue_lock, []

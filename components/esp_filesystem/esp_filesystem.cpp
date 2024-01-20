@@ -53,14 +53,14 @@ FileSystem *FileSystem::get_instance()
   return _singleton;
 }
 
-esp_err_t FileSystem::mount(const char *base_path)
+esp_err_t FileSystem::mount(std::string root)
 {
   esp_err_t err = ESP_OK;
 
   for (esp_vfs_spiffs_conf_t config : this->partitions)
   {
 
-    if (strcmp(config.base_path, base_path) == 0)
+    if (std::string(config.base_path) == root)
     {
       err = esp_vfs_spiffs_register(&config);
 
@@ -85,7 +85,7 @@ esp_err_t FileSystem::mount(const char *base_path)
     }
   }
 
-  ESP_LOGE(TAG, "Failed to find SPIFFS partition (%s)", base_path);
+  ESP_LOGE(TAG, "Failed to find SPIFFS partition (%s)", root.c_str());
   return err;
 }
 
@@ -119,13 +119,13 @@ esp_err_t FileSystem::mount_all()
   return err;
 }
 
-esp_err_t FileSystem::unmount(const char *base_path)
+esp_err_t FileSystem::unmount(std::string root)
 {
   esp_err_t err = ESP_OK;
 
   for (esp_vfs_spiffs_conf_t config : this->partitions)
   {
-    if (strcmp(config.base_path, base_path) == 0)
+    if (std::string(config.base_path) == root)
     {
       err = esp_vfs_spiffs_unregister(config.base_path);
       if (err != ESP_OK)
@@ -154,6 +154,56 @@ esp_err_t FileSystem::unmount_all()
   }
 
   return err;
+}
+
+esp_err_t FileSystem::mkdir(std::string name)
+{
+  return ESP_OK;
+}
+
+esp_err_t FileSystem::create(std::string name)
+{
+  return ESP_OK;
+}
+esp_err_t FileSystem::force_create(std::string name)
+{
+  return ESP_OK;
+}
+
+esp_err_t FileSystem::move(std::string name)
+{
+  return ESP_OK;
+}
+esp_err_t FileSystem::force_move(std::string name)
+{
+  return ESP_OK;
+}
+
+esp_err_t FileSystem::copy(std::string name)
+{
+  return ESP_OK;
+}
+esp_err_t FileSystem::force_copy(std::string name)
+{
+  return ESP_OK;
+}
+
+esp_err_t FileSystem::remove(std::string name)
+{
+  return ESP_OK;
+}
+esp_err_t FileSystem::force_remove(std::string name)
+{
+  return ESP_OK;
+}
+
+bool FileSystem::is_file(std::string file_name)
+{
+  return ESP_OK;
+}
+bool FileSystem::is_dir(std::string dir_name)
+{
+  return ESP_OK;
 }
 
 esp_err_t FileSystem::open(const char *file_name, const char *mode)

@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include <string>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,11 +19,6 @@ protected:
 public:
   std::vector<esp_vfs_spiffs_conf_t> partitions;
 
-  esp_err_t mount(const char *base_path);
-  esp_err_t mount_all();
-  esp_err_t unmount(const char *base_path);
-  esp_err_t unmount_all();
-
   bool find(const char *file_name);
   int32_t get_size(const char *file_name);
 
@@ -37,6 +33,29 @@ public:
   esp_err_t abort();
 
   static FileSystem *get_instance();
+  
+  esp_err_t mount(std::string root);
+  esp_err_t mount_all();
+
+  esp_err_t unmount(std::string root);
+  esp_err_t unmount_all();
+  
+  esp_err_t mkdir(std::string name);
+
+  esp_err_t create(std::string name);
+  esp_err_t force_create(std::string name);
+
+  esp_err_t move(std::string name);
+  esp_err_t force_move(std::string name);
+
+  esp_err_t copy(std::string name);
+  esp_err_t force_copy(std::string name);
+
+  esp_err_t remove(std::string name);
+  esp_err_t force_remove(std::string name);
+
+  bool is_file(std::string file_name);
+  bool is_dir(std::string dir_name);
 
   FileSystem(FileSystem &other) = delete;
   void operator=(const FileSystem &) = delete;
