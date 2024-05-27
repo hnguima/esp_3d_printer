@@ -3,3 +3,6 @@ backup
 build
 components/web_interface/node_modules
 components/web_interface/dist
+test/build
+test/managed_components
+test/build

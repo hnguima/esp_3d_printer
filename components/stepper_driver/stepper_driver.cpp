@@ -115,6 +115,7 @@ bool Stepper::setup_move(int32_t steps, double speed) // speed is step per secon
 
   decel_start = step_target - decel_steps;
 
+
   step_delay = step_c0;
   accel_count = 1;
   step_timer_cycles = 0;
@@ -153,6 +154,8 @@ bool Stepper::start_move()
 
   step_on = false;
   step_io_func(step_io, step_on);
+
+
 
   // _position = dir_level ? _position + 1 : _position - 1;
 

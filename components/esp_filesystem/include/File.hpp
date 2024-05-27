@@ -10,15 +10,12 @@
 #include <esp_err.h>
 #include <esp_littlefs.h>
 
-#include <Item.hpp>
-#include <Folder.hpp>
-#include <File.hpp>
-
 class FileSystem
 {
 protected:
-  FileSystem();
   static FileSystem *_singleton;
+  FileSystem();
+  esp_err_t search_for_partitions();
 
 public:
   std::vector<esp_vfs_littlefs_conf_t>
@@ -66,8 +63,5 @@ public:
   void operator=(const FileSystem &) = delete;
 
 private:
-  Item *root;
-  Folder *pwd;
-
-  esp_err_t search_for_partitions();
+  FILE *file;
 };

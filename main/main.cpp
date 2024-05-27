@@ -62,15 +62,17 @@ extern "C" void app_main()
   sdcard_init();
 
   Printer::init();
-  // Printer::get_instance()->move_z_in_time(100, 2);
+  Printer::print("/sdcard/TacoLixa430_2.gcode");
 
-  Printer::print("/sdcard/TacoLixa430.gcode");
+  Printer *printer = Printer::get_instance();
 
 
   while (true)
   {
     // ESP_LOGI("mem", "%lu", esp_get_free_heap_size());
-    Printer::print_temperatures();
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
+    // ESP_LOGI("test","Targ x: %lf y: %lf z: %lf | Curr x: %lf y: %lf z: %lf", printer->desired_x, printer->desired_y, printer->desired_z, printer->x_pos, printer->y_pos, printer->z_pos);
+    // ESP_LOGI("test", "Deviation x: %lf y: %lf z: %lf", printer->desired_x - printer->x_pos, printer->desired_y - printer->y_pos, printer->desired_z - printer->z_pos);
+    // Printer::print_temperatures();
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }

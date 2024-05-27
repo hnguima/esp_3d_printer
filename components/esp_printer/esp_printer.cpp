@@ -407,6 +407,7 @@ bool Printer::is_command_running(gcode_cmd_t command)
     return true;
   }
 
+
   return false;
 }
 
@@ -414,6 +415,7 @@ double m1_max = 0, m1_min = 0, m2_max = 0, m2_min = 0;
 
 void Printer::command_consumer()
 {
+
 
   while (true)
   {
@@ -439,10 +441,16 @@ void Printer::command_consumer()
     double z_displacement = command.has_z ? command.z - _singleton->z_pos : 0;
     double e_displacement = command.has_ext ? command.ext - _singleton->e_pos : 0;
 
+    _singleton->desired_x = command.x;
+    _singleton->desired_y = command.y;
+    _singleton->desired_z = command.z;
+    _singleton->desired_e = command.ext;
+
     if (command.has_feed_rate && command.feed_rate > 0)
     {
       _singleton->set_feedrate(command.feed_rate / 60);
     }
+
 
     double time = sqrt(std::pow(x_displacement, 2) + std::pow(y_displacement, 2) + std::pow(z_displacement, 2)) / (_singleton->_feedrate);
     // printf("time: %lf, x: %lf, y: %lf, z: %lf, feed: %ld\n", time, x_displacement, y_displacement, z_displacement, _singleton->_feedrate);
@@ -495,6 +503,14 @@ void Printer::command_consumer()
       {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
       }
+
+      double curr_x = get_x_mm(_singleton->stepper_m1->position(), _singleton->stepper_m2->position());
+      double curr_y = get_y_mm(_singleton->stepper_m1->position(), _singleton->stepper_m2->position());
+      double curr_z = get_z_mm(_singleton->stepper_z->position());
+
+      printf("Targ %lf %lf %lf\n", _singleton->desired_x, _singleton->desired_y, _singleton->desired_z);
+      printf("Curr %lf %lf %lf\n", curr_x, curr_y, curr_z);
+      printf("Dev %lf %lf %lf\n", _singleton->desired_x - curr_x, _singleton->desired_y - curr_y, _singleton->desired_z - curr_z);
     }
   }
 }
@@ -518,6 +534,7 @@ void Printer::printer_task()
       ESP_LOGE(TAG, "Failed to open file: %s", _singleton->filename.c_str());
       continue;
     }
+
 
     char line[128];
     gcode_cmd_t command;

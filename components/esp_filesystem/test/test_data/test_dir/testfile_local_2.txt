@@ -1,0 +1,2 @@
+testfile local number two
+this should be inside folder ./test_dir

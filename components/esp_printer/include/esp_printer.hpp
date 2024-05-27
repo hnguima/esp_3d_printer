@@ -83,12 +83,18 @@ public:
   Stepper *stepper_z;
   Stepper *stepper_e;
 
-private:
-  uint32_t _feedrate = 0;
+  double desired_x = 0;
+  double desired_y = 0;
+  double desired_z = 0;
+  double desired_e = 0;
+
   double x_pos;
   double y_pos;
   double z_pos;
   double e_pos;
+
+private:
+  uint32_t _feedrate = 0;
 
   float hotbed_temp;
   float hotbed_temp_setpoint;
