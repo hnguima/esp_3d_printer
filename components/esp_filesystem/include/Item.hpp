@@ -19,6 +19,6 @@ public:
 
 private:
 
-  vector<Item*> children; 
+  // vector<Item*> children; 
 
 };

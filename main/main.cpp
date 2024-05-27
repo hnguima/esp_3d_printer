@@ -14,11 +14,10 @@
 
 #include "esp_wifi_driver.hpp"
 #include "firmware_update.hpp"
-#include "http_server.hpp"
+// #include "http_server.hpp"
 
 #include "esp_settings.hpp"
-#include "http_handlers.hpp"
-#include "app_info.hpp"
+// #include "http_handlers.hpp"
 
 #include "esp_serial.hpp"
 
@@ -34,7 +33,6 @@
 
 #include "sdcard.h"
 
-#include "main.pb.h"
 
 extern "C" void app_main()
 {

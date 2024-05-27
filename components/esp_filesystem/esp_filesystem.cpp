@@ -254,10 +254,10 @@ esp_err_t FileSystem::force_copy(std::string src, std::string dest)
 
 esp_err_t FileSystem::remove(std::string name)
 {
-  if (unlink(name.c_str()) == 0)
-  {
-    return ESP_OK;
-  }
+  // if (unlink(name.c_str()) == 0)
+  // {
+  //   return ESP_OK;
+  // }
 
   perror("unlink failed");
   return ESP_FAIL;
