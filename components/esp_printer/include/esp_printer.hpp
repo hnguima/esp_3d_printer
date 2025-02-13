@@ -20,10 +20,10 @@
 
 #define PRINTER_COMMAND_QUEUE_SIZE 10
 
-#define PRINTER_XY_CALIBRATION  81.07
+#define PRINTER_XY_CALIBRATION 81.07
 #define PRINTER_XY_SPEED_CALIBRATION PRINTER_XY_CALIBRATION * 1.41421
 #define PRINTER_Z_CALIBRATION -397.55
-#define PRINTER_E_CALIBRATION 460
+#define PRINTER_E_CALIBRATION -460
 // #define PRINTER_E_CALIBRATION 417.2
 
 void pcf_io_func(uint16_t pin, uint8_t value);
@@ -60,6 +60,14 @@ public:
   void move_y_in_time(double y, double time);
 
   void move_xy(double x, double y, double speed);
+  /// @brief  
+  /// @param x 
+  /// @param y 
+  /// @param time 
+  /// @brief 
+  /// @param x 
+  /// @param y 
+  /// @param time 
   void move_xy_in_time(double x, double y, double time);
 
   void move_z(double z, double speed);
@@ -83,12 +91,18 @@ public:
   Stepper *stepper_z;
   Stepper *stepper_e;
 
-private:
-  uint32_t _feedrate = 0;
+  double desired_x = 0;
+  double desired_y = 0;
+  double desired_z = 0;
+  double desired_e = 0;
+
   double x_pos;
   double y_pos;
   double z_pos;
   double e_pos;
+
+private:
+  uint32_t _feedrate = 0;
 
   float hotbed_temp;
   float hotbed_temp_setpoint;

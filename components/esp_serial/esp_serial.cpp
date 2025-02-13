@@ -81,7 +81,7 @@ Serial::~Serial()
 {
   ESP_LOGW(TAG, "desctructor called");
 
-  uart_driver_delete(this->port);
+  uart_driver_delete((uart_port_t)this->port);
 
   for (size_t i = 0; i < serial_list.size(); i++)
   {
@@ -112,14 +112,14 @@ void Serial::init()
     return;
   }
 
-  ESP_ERROR_CHECK(uart_param_config(this->port, &(this->config)));
+  ESP_ERROR_CHECK(uart_param_config((uart_port_t)this->port, &(this->config)));
 
   // Set UART pins (using UART0 default pins ie no changes.)
-  ESP_ERROR_CHECK(uart_set_pin(this->port, this->rx_pin, this->tx_pin, this->rts_pin, this->cts_pin));
+  ESP_ERROR_CHECK(uart_set_pin((uart_port_t)this->port, this->rx_pin, this->tx_pin, this->rts_pin, this->cts_pin));
 
-  ESP_ERROR_CHECK(uart_driver_install(this->port, SERIAL_RX_BUFFER_SIZE * 2, SERIAL_TX_BUFFER_SIZE * 2, 20, &(this->queue), 0));
+  ESP_ERROR_CHECK(uart_driver_install((uart_port_t)this->port, SERIAL_RX_BUFFER_SIZE * 2, SERIAL_TX_BUFFER_SIZE * 2, 20, &(this->queue), 0));
 
-  ESP_ERROR_CHECK(uart_set_mode(this->port, this->mode));
+  ESP_ERROR_CHECK(uart_set_mode((uart_port_t)this->port, this->mode));
 
   sprintf(this->task_name, "Serial[%d]", this->port);
 
@@ -154,7 +154,7 @@ void Serial::task(void *param)
       other types of events. If we take too much time on data event, the queue might
       be full.*/
       case UART_DATA:
-        uart_read_bytes(serial_instance->port, data, event.size, portMAX_DELAY);
+        uart_read_bytes((uart_port_t)serial_instance->port, data, event.size, portMAX_DELAY);
 
         // ESP_LOG_BUFFER_HEXDUMP(serial_instance->task_name, data, event.size, ESP_LOG_INFO);
 
@@ -170,7 +170,7 @@ void Serial::task(void *param)
         // If fifo overflow happened, you should consider adding flow control for your application.
         // The ISR has already reset the rx FIFO,
         // As an example, we directly flush the rx buffer here in order to read more data.
-        uart_flush_input(serial_instance->port);
+        uart_flush_input((uart_port_t)serial_instance->port);
         xQueueReset(serial_instance->queue);
         break;
       // Event of UART ring buffer full
@@ -178,7 +178,7 @@ void Serial::task(void *param)
         ESP_LOGI(serial_instance->task_name, "ring buffer full");
         // If buffer full happened, you should consider increasing your buffer size
         // As an example, we directly flush the rx buffer here in order to read more data.
-        uart_flush_input(serial_instance->port);
+        uart_flush_input((uart_port_t)serial_instance->port);
         xQueueReset(serial_instance->queue);
         break;
       // Event of UART RX break detected
@@ -223,7 +223,7 @@ esp_err_t Serial::set_pins(int rx_pin, int tx_pin, int rts_pin, int cts_pin)
 
   ESP_LOGI(TAG, "uart num: %d", this->port);
 
-  return uart_set_pin(this->port, this->rx_pin, this->tx_pin, this->rts_pin, this->cts_pin);
+  return uart_set_pin((uart_port_t)this->port, this->rx_pin, this->tx_pin, this->rts_pin, this->cts_pin);
 }
 
 void Serial::on_recv(recv_handler_func_t func)
@@ -254,7 +254,7 @@ esp_err_t Serial::send_bytes(uint8_t *buffer, uint32_t size)
   memcpy(this->buffer_tx, buffer, size);
   this->size_tx = size;
 
-  err = uart_write_bytes(this->port, this->buffer_tx, this->size_tx);
+  err = uart_write_bytes((uart_port_t)this->port, this->buffer_tx, this->size_tx);
 
   if (err < 0)
   {

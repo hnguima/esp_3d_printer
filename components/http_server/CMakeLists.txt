@@ -19,4 +19,4 @@ add_custom_target(build_interface
                     COMMAND npm install && npm run esp
                     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-spiffs_create_partition_image(server "${PROJECT_DIR}/build/server" FLASH_IN_PROJECT DEPENDS build_interface)
+#littlefs_create_partition_image(server "${PROJECT_DIR}/build/server" DEPENDS build_interface)

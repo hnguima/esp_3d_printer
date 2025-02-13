@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 #include <esp_err.h>
-#include <esp_spiffs.h>
+#include <esp_littlefs.h>
 
 #include <stdio.h>
 #include <pb_encode.h>

@@ -3,30 +3,71 @@
 #include <vector>
 
 #include <string>
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <esp_err.h>
-#include <esp_spiffs.h>
+#include <esp_littlefs.h>
+
+#include <Item.hpp>
+#include <Folder.hpp>
+#include <File.hpp>
 
 class FileSystem
 {
+protected:
+  FileSystem();
+  static FileSystem *_singleton;
+
 public:
+  std::vector<esp_vfs_littlefs_conf_t>
+      partitions;
 
-  FileSystem(std::string root);
+  bool find(const char *file_name);
+  int32_t get_size(const char *file_name);
 
-  bool create(std::string path);
+  size_t read(const char *file_name, char *output, size_t size);
+  size_t read(const char *file_name, char *output);
 
-  std::string read(std::string path);
-  std::string read_slice(std::string path, int size);
-  uint8_t read_bytes(std::string path);
+  size_t write(const char *file_name, char *input, size_t size);
+  size_t write(const char *file_name, char *input);
 
-  bool write(std::string path, std::string data);
-  bool write(std::string path, uint8_t data);
-  bool append(std::string path, uint8_t data);
+  static esp_err_t open(const char *file_name, const char *mode);
+  static esp_err_t close();
+  static esp_err_t abort();
 
-  bool rename(std::string path, std::string new_path);
-  bool remove(std::string path);
+  static FileSystem *get_instance();
+
+  static esp_err_t mount(std::string root);
+  static esp_err_t mount_all();
+
+  static esp_err_t unmount(std::string root);
+  static esp_err_t unmount_all();
+
+  static esp_err_t make_dir(std::string name);
+
+  static esp_err_t create(std::string name);
+  static esp_err_t force_create(std::string name);
+
+  static esp_err_t move(std::string src, std::string dest);
+  static esp_err_t force_move(std::string src, std::string dest);
+
+  static esp_err_t copy(std::string src, std::string dest);
+  static esp_err_t force_copy(std::string src, std::string dest);
+
+  static esp_err_t remove(std::string name);
+  static esp_err_t force_remove(std::string name);
+
+  static bool is_file(std::string file_name);
+  static bool is_dir(std::string dir_name);
+
+  FileSystem(FileSystem &other) = delete;
+  void operator=(const FileSystem &) = delete;
 
 private:
+  Item *root;
+  Folder *pwd;
+
+  esp_err_t search_for_partitions();
 };
