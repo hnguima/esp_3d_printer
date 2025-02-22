@@ -39,7 +39,7 @@ public:
 
   static FileSystem *get_instance();
 
-  static esp_err_t mount(std::string root);
+  static esp_err_t mount(const std::string &root);
   static esp_err_t mount_all();
 
   static esp_err_t unmount(std::string root);
@@ -53,7 +53,7 @@ public:
   static esp_err_t move(std::string src, std::string dest);
   static esp_err_t force_move(std::string src, std::string dest);
 
-  static esp_err_t copy(std::string src, std::string dest);
+  static esp_err_t copy(const std::string &src, const std::string &dest);
   static esp_err_t force_copy(std::string src, std::string dest);
 
   static esp_err_t remove(std::string name);
